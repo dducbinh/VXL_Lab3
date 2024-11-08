@@ -14,7 +14,7 @@
 #define LED7SEG_SCAN_DUR 	10
 #define LED_7 				5
 
-extern int fisrtSEG;
+extern int firstSEG;
 extern int secondSEG;
 extern int mode;
 

@@ -24,7 +24,7 @@ void buttonReading(void) {
 	for (int i = 0; i < BUTTON_NUMS; i++) {
 		buttonDebounce2[i] = buttonDebounce1[i];
 		buttonDebounce1[i] = buttonDebounce0[i];
-		buttonDebounce0[i] = HAL_GPIO_WritePin(GPIOB, buttonPins);
+		buttonDebounce0[i] = HAL_GPIO_ReadPin(GPIOB, buttonPins[i]);
 		if ((buttonDebounce0[i] == buttonDebounce1[i]) && (buttonDebounce1[i] == buttonDebounce2[i])) {
 			if (buttonState[i] != buttonDebounce0[i]) {
 				buttonState[i] = buttonDebounce0[i];

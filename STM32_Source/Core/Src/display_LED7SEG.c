@@ -12,44 +12,44 @@ int firstSEG;
 int secondSEG;
 int mode;
 
-void display7SEG(int number) {
+static void display7SEG(int number) {
 	switch (number) {
 	case 0:
-		GPIOA->ODR = 0xC0; // Hien thi so 0
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b10000000; // GFEDCBA except bit 0
 		break;
 	case 1:
-		GPIOA->ODR = 0xF9; // Hien thi so 1
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b11110011; // GFEDCBA
 		break;
 	case 2:
-		GPIOA->ODR = 0xA4; // Hien thi so 2
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b01001001; // GFEDCBA
 		break;
 	case 3:
-		GPIOA->ODR = 0xB0; // Hien thi so 3
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b01100001; // GFEDCBA
 		break;
 	case 4:
-		GPIOA->ODR = 0x99; // Hien thi so 4
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b00110011; // GFEDCBA
 		break;
 	case 5:
-		GPIOA->ODR = 0x92; // Hien thi so 5
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b00100101; // GFEDCBA
 		break;
 	case 6:
-		GPIOA->ODR = 0x82; // Hien thi so 6
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b00000101; // GFEDCBA
 		break;
 	case 7:
-		GPIOA->ODR = 0xF8; // Hien thi so 7
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b11110001; // GFEDCBA
 		break;
 	case 8:
-		GPIOA->ODR = 0x80; // Hien thi so 8
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b00000001; // GFEDCBA
 		break;
 	case 9:
-		GPIOA->ODR = 0x90; // Hien thi so 9
+		GPIOA->ODR = (GPIOA->ODR & 0xFFFFFF01) | 0b00100001; // GFEDCBA
 		break;
 	default:
 		break;
 	}
 }
 
-void Led7SEGInitState(void) {
+void led7SEGInitState(void) {
 	firstSEG = 0;
 	secondSEG = 0;
 	mode = 1;
@@ -100,6 +100,3 @@ void led7SEGScan(void) {
 		break;
 	}
 }
-
-
-
