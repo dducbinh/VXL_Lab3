@@ -12,7 +12,7 @@ int trafficYellowDuration = 0;
 int trafficGreenDuration = 0;
 enum Traffic_State trafficState[TRAFFIC_NUMS] = {0, 0};
 
-static uint16_t trafficRedPins[TRAFFIC_NUMS] = {RED1_Pin, RED1_Pin};
+static uint16_t trafficRedPins[TRAFFIC_NUMS] = {RED1_Pin, RED2_Pin};
 static uint16_t trafficYellowPins[TRAFFIC_NUMS] = {YELLOW1_Pin, YELLOW2_Pin};
 static uint16_t trafficGreenPins[TRAFFIC_NUMS] = {GREEN1_Pin, GREEN2_Pin};
 

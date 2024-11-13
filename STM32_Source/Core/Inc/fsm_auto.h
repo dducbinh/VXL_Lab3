@@ -13,7 +13,7 @@
 #include "display_LED7SEG.h"
 #include "display_TrafficLight.h"
 
-enum FSM_STATE {FSM_NORMAL, FSM_MODE_RED, FSM_MODE_GREEN, FSM_MODE_YELLOW};
+enum FSM_STATE {FSM_NORMAL, FSM_MODE_RED, FSM_MODE_YELLOW, FSM_MODE_GREEN};
 
 void fsmInitState(void);
 void fsmReState(enum FSM_STATE state);

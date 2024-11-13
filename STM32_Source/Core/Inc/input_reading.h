@@ -11,7 +11,7 @@
 #include "main.h"
 #include "software_timer.h"
 
-#define BUTTON_NUMS 		4
+#define BUTTON_NUMS 		3
 #define BUTTON_PRESSED_DUR 	1000
 #define BUTTON_HOLD_DUR 	500
 #define PRESSED_STATE		GPIO_PIN_RESET

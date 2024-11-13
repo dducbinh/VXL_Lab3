@@ -9,7 +9,7 @@
 
 //static uint16_t GPIO_STATE
 
-static uint16_t buttonPins[BUTTON_NUMS] = {BUTTON1_Pin, BUTTON2_Pin, BUTTON3_Pin, BUTTON4_Pin};
+static uint16_t buttonPins[BUTTON_NUMS] = {BUTTON1_Pin, BUTTON2_Pin, BUTTON3_Pin};
 
 static GPIO_PinState buttonState[BUTTON_NUMS];
 static GPIO_PinState buttonDebounce0[BUTTON_NUMS];

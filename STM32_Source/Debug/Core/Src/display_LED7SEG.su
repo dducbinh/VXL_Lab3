@@ -1,3 +1,3 @@
-display_LED7SEG.c:15:6:display7SEG	16	static
-display_LED7SEG.c:51:6:led7SEGInitState	8	static
-display_LED7SEG.c:63:6:led7SEGScan	8	static
+display_LED7SEG.c:15:13:display7SEG	16	static
+display_LED7SEG.c:52:6:led7SEGInitState	8	static
+display_LED7SEG.c:64:6:led7SEGScan	8	static
