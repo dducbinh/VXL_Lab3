@@ -168,11 +168,10 @@ void fsmProcess(void) {
 			if (secondSEG < 1) secondSEG = 99;
 			trafficRedDuration = firstSEG;
 		}
-//		// Nhan button 4 => set time cho 7SEG mode RED
-//		if (buttonPress(3)) {
-//			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
-//			trafficRedDuration = firstSEG;
-//		}
+
+		if (buttonPress(3)) {
+			fsmReState(FSM_NORMAL);
+		}
 		break;
 	case FSM_MODE_YELLOW:
 		if (getTimerFlag(1) == 1) {
@@ -213,11 +212,10 @@ void fsmProcess(void) {
 			if (secondSEG < 1) secondSEG = 99;
 			trafficYellowDuration = firstSEG;
 		}
-//		// Nhan button 4 => set time cho 7SEG mode YELLOW
-//		if (buttonPress(3)) {
-//			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
-//			trafficYellowDuration = firstSEG;
-//		}
+
+		if (buttonPress(3)) {
+			fsmReState(FSM_NORMAL);
+		}
 		break;
 	case FSM_MODE_GREEN:
 		if (getTimerFlag(1) == 1) {
@@ -238,7 +236,7 @@ void fsmProcess(void) {
 		}
 		if (buttonPress(0)) {
 			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
-			fsmReState(FSM_NORMAL);
+			fsmReState(FSM_MODE_RED);
 		}
 
 		if (buttonPress(1)) {
@@ -258,11 +256,10 @@ void fsmProcess(void) {
 			if (secondSEG < 1) secondSEG = 99;
 			trafficGreenDuration = firstSEG;
 		}
-//		// Nhan button 4 => set time cho 7SEG mode Green
-//		if (buttonPress(3)) {
-//			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
-//			trafficGreenDuration = firstSEG;
-//		}
+
+		if (buttonPress(3)) {
+			fsmReState(FSM_NORMAL);
+		}
 		break;
 	}
 }
