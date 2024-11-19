@@ -8,8 +8,6 @@
 
 #include "software_timer.h"
 
-#define TIMER_INACTIVE -1
-
 int timer_flag[NUM_TIME];
 int timer_counter[NUM_TIME];
 
@@ -40,5 +38,5 @@ int getTimerFlag(int idx) {
 	if (idx < NUM_TIME) {
 		return timer_flag[idx];
 	}
-	return TIMER_INACTIVE; // Xay ra loi
+	return -1; // Xay ra loi
 }
