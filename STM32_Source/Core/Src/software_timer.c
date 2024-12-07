@@ -40,5 +40,5 @@ int getTimerFlag(int idx) {
 	if (idx < NUM_TIME) {
 		return timer_flag[idx];
 	}
-	return TIMER_INACTIVE; // Xay ra loi
+	return TIMER_INACTIVE; // Timer Expired
 }

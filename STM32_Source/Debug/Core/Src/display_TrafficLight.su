@@ -1,2 +1,2 @@
-display_TrafficLight.c:19:6:trafficInitState	8	static
-display_TrafficLight.c:27:6:trafficReState	16	static
+display_TrafficLight.c:24:6:trafficInitState	8	static
+display_TrafficLight.c:34:6:trafficReState	16	static

@@ -13,7 +13,6 @@ enum FSM_STATE fsmState = FSM_NORMAL;
 void fsmInitState(void) {
 	trafficInitState();
 	fsmReState(FSM_NORMAL);
-	HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, RESET);
 }
 
 void fsmReState(enum FSM_STATE state) {
@@ -22,36 +21,40 @@ void fsmReState(enum FSM_STATE state) {
 		setTimer(1, TRAFFIC_SEC_DUR);			// CountDown
 		firstSEG = trafficRedDuration;
 		secondSEG = trafficGreenDuration;
-		mode = 1;
+
 		trafficReState(0, Traffic_Red);
 		trafficReState(1, Traffic_Green);
+
 		fsmState = FSM_NORMAL;
 		break;
 	case FSM_MODE_RED:
 		setTimer(1, TRAFFIC_BLINK_DUR);
 		firstSEG = trafficRedDuration;
 		secondSEG = trafficRedDuration;
-		mode = 2;
+
 		trafficReState(0, Traffic_Off);
 		trafficReState(1, Traffic_Off);
+
 		fsmState = FSM_MODE_RED;
 		break;
 	case FSM_MODE_YELLOW:
 		setTimer(1, TRAFFIC_BLINK_DUR);
 		firstSEG = trafficYellowDuration;
 		secondSEG = trafficYellowDuration;
-		mode = 3;
+
 		trafficReState(0, Traffic_Off);
 		trafficReState(1, Traffic_Off);
+
 		fsmState = FSM_MODE_YELLOW;
 		break;
 	case FSM_MODE_GREEN:
 		setTimer(1, TRAFFIC_BLINK_DUR);
 		firstSEG = trafficGreenDuration;
 		secondSEG = trafficGreenDuration;
-		mode = 4;
+
 		trafficReState(0, Traffic_Off);
 		trafficReState(1, Traffic_Off);
+
 		fsmState = FSM_MODE_GREEN;
 		break;
 	default:
@@ -123,12 +126,12 @@ void fsmProcess(void) {
 				break;
 			}
 		}
-
-		if (buttonPress(0)) {
+		// Switch to mode Red Led blinking
+ 		if (buttonPress(0)) {
 			fsmReState(FSM_MODE_RED);
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 		}
 		break;
+
 	case FSM_MODE_RED:
 		if (getTimerFlag(1) == 1) {
 			switch (trafficState[0]) {
@@ -146,13 +149,12 @@ void fsmProcess(void) {
 				break;
 			}
 		}
+		// Switch to mode Yellow Led blinking
 		if (buttonPress(0)) {
-
 			fsmReState(FSM_MODE_YELLOW);
 		}
 
 		if (buttonPress(1)) {
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 			firstSEG++;
 			if (firstSEG > 99) firstSEG = 1;
 			secondSEG++;
@@ -161,7 +163,6 @@ void fsmProcess(void) {
 		}
 
 		if (buttonPress(2)) {
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 			firstSEG--;
 			if (firstSEG < 1) firstSEG = 99;
 			secondSEG--;
@@ -173,6 +174,7 @@ void fsmProcess(void) {
 			fsmReState(FSM_NORMAL);
 		}
 		break;
+
 	case FSM_MODE_YELLOW:
 		if (getTimerFlag(1) == 1) {
 			switch (trafficState[0]) {
@@ -190,13 +192,12 @@ void fsmProcess(void) {
 				break;
 			}
 		}
+		// Switch to mode Green led blinking
 		if (buttonPress(0)) {
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 			fsmReState(FSM_MODE_GREEN);
 		}
 
 		if (buttonPress(1)) {
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 			firstSEG++;
 			if (firstSEG > 99) firstSEG = 1;
 			secondSEG++;
@@ -205,7 +206,6 @@ void fsmProcess(void) {
 		}
 
 		if (buttonPress(2)) {
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 			firstSEG--;
 			if (firstSEG < 1) firstSEG = 99;
 			secondSEG--;
@@ -217,6 +217,7 @@ void fsmProcess(void) {
 			fsmReState(FSM_NORMAL);
 		}
 		break;
+
 	case FSM_MODE_GREEN:
 		if (getTimerFlag(1) == 1) {
 			switch (trafficState[0]) {
@@ -234,13 +235,13 @@ void fsmProcess(void) {
 				break;
 			}
 		}
+		// Switch to mode Red Led blinking
 		if (buttonPress(0)) {
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 			fsmReState(FSM_MODE_RED);
 		}
 
 		if (buttonPress(1)) {
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
+//			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 			firstSEG++;
 			if (firstSEG > 99) firstSEG = 1;
 			secondSEG++;
@@ -249,7 +250,7 @@ void fsmProcess(void) {
 		}
 
 		if (buttonPress(2)) {
-			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
+//			HAL_GPIO_WritePin(SIGNAL_LED_GPIO_Port, SIGNAL_LED_Pin, SET);
 			firstSEG--;
 			if (firstSEG < 1) firstSEG = 99;
 			secondSEG--;
